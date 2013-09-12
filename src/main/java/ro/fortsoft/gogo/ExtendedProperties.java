@@ -1,6 +1,7 @@
 package ro.fortsoft.gogo;
 
 import java.util.Properties;
+import java.util.Set;
 
 /**
  * @author Decebal Suiu
@@ -45,6 +46,41 @@ public class ExtendedProperties extends Properties {
         return value;
     }
     
+    /**
+     * Retrieves all properties for a section (all properties that starts with "section." prefix).
+     * Property names retrieved for a section don't contain the section name.
+     * For example:
+     * <code>
+     *     # app section
+     *     app.class.path=lib/*
+     *     app.main.class=com.acme.Main
+     *     
+     *     # vm section
+     * 		vm.http.proxyHost=127.0.0.1
+     * 		vm.http.proxyPort=3128
+     * 
+     * 		getSection("app"); // =>
+     *     class.path=lib/*
+     *     main.class=com.acme.Main
+     * 
+     * 		getSection("vm"); // =>
+     * 		http.proxyHost=127.0.0.1
+     * 		http.proxyPort=3128
+     * </code>
+     */
+    public ExtendedProperties getSection(String section) {
+    	ExtendedProperties sectionProperties = new ExtendedProperties();
+    	
+    	String prefix = section + '.'; 
+    	Set<String> names = stringPropertyNames();
+    	for (String name : names) {
+    		if (name.startsWith(prefix)) {
+    			sectionProperties.setProperty(name.substring(prefix.length()), getProperty(name));
+    		}
+    	}
+    	
+    	return sectionProperties;
+    }
     
     private String evaluate(String value) {
         if ((value == null) || (value.length() < 4)) {
