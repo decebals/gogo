@@ -76,6 +76,10 @@ public class Launcher {
 		}
 		System.out.println("mainClassName = '" + mainClassName + "'");
 
+		// export vm.* properties as system properties
+		ExtendedProperties vmProperties = properties.getSection("vm");		
+		System.getProperties().putAll(vmProperties);
+		
 		// invoke application's main class
 		try {
 			ReflectionUtils.invokeMain(mainClassName, args, launcherClassLoader);
