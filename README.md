@@ -31,7 +31,7 @@ How to use
 It's very simple to use gogo with your application:
 
 - copy gogo.jar file in your application folder
-- create a gogo.properties file (few properties)
+- create a gogo.properties file ([few properties](https://github.com/decebals/gogo/blob/master/src/main/resources/gogo.properties))
 - run application with `java -jar gogo.jar`
 
 Example
