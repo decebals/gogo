@@ -6,7 +6,7 @@ Current build status: [![Build Status](https://buildhive.cloudbees.com/job/deceb
 
 Features/Benefits
 -------------------
-Gogo is an open source (Apache license) tiny (around 12KB) java application launcher, with zero dependencies and a quick learning curve.
+Gogo is an open source (Apache license) tiny (around 12KB) java application launcher, with zero dependencies and a quick learning curve.   
 With gogo you can add resources (jars and classes) to your application classpath in a dynamically mode, specifying the main class add VM options and run your application with a simple double-click.
 
 Using Maven
@@ -36,6 +36,7 @@ It's very simple to use gogo with your application:
 
 Example
 
+````shell
 $ ls
 gogo.jar  
 gogo.properties  
@@ -72,13 +73,14 @@ file:/home/decebal/work/gogo/demo/lib/xpp3_min-1.1.4c.jar
 file:/home/decebal/work/gogo/demo/lib/xstream-1.3.1.jar
 mainClassName = 'ro.fortsoft.gogo.demo.Main'
 >>> Hello from "Demo"
+```
 
 Now I want to add some comments to above example.
 
-First, you can see that my example contains two folders (lib and jdbc-drivers) and the gogo's components (gogo.jar and gogo.properties).
-The lib folders contains jar files used by my application. The jdbc-drivers contains additional jdbc drivers.
-In gogo.properties file I specify the application classpath (lib/*;jdbc-drivers) and the application class that contains the main method.
-The the classpath entries of your application are separated by ';' character. If the classpath entry ended with /* means that you want to load all jars (recursively) from that directory else that directory is a classes directory.
+First, you can see that my example contains two folders (lib and jdbc-drivers) and the gogo's components (gogo.jar and gogo.properties).  
+The lib folders contains jar files used by my application. The jdbc-drivers contains additional jdbc drivers.  
+In gogo.properties file I specify the application classpath (lib/*;jdbc-drivers) and the application class that contains the main method.  
+The the classpath entries of your application are separated by ';' character. If the classpath entry ended with /* means that you want to load all jars (recursively) from that directory else that directory is a classes directory.  
 With `java -jar gogo.jar` you launch your application. You can see that your main method is called (displaying - Hello from "Demo") after some info messages.
 
 License
