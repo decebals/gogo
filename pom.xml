@@ -9,7 +9,7 @@
 
     <groupId>ro.fortsoft.gogo</groupId>
     <artifactId>gogo</artifactId>
-    <version>0.2-SNAPSHOT</version>
+    <version>0.2</version>
     <packaging>jar</packaging>
 
     <name>gogo</name>
@@ -27,7 +27,7 @@
         <connection>scm:git:https://github.com/decebals/gogo.git</connection>
         <developerConnection>scm:git:https://github.com/decebals/gogo.git</developerConnection>
         <url>git@github.com/decebals/gogo.git</url>
-        <tag>HEAD</tag>
+        <tag>release-0.2</tag>
     </scm>
 
     <properties>
