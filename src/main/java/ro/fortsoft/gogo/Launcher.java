@@ -80,6 +80,9 @@ public class Launcher {
 		ExtendedProperties vmProperties = properties.getSection("vm");		
 		System.getProperties().putAll(vmProperties);
 		
+		// set thread class loader
+		Thread.currentThread().setContextClassLoader(launcherClassLoader);
+		
 		// invoke application's main class
 		try {
 			ReflectionUtils.invokeMain(mainClassName, args, launcherClassLoader);
