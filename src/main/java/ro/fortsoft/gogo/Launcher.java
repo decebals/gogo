@@ -55,23 +55,26 @@ public class Launcher {
 		
 		// get the application's main class name
 		String mainClassName = properties.getProperty(APP_MAIN_CLASS);
-		if (mainClassName == null) {
+		if ((mainClassName == null) || mainClassName.equals(DummyApplication.class.getName())) {
 			String mainJar = properties.getProperty(APP_MAIN_JAR);
-			if (mainJar != null) {
+			System.out.println("mainJar = '" + mainJar + "'");
+			if ((mainJar == null) && (mainClassName == null)) {
 				fatal("Property '" + APP_MAIN_JAR + "' cannot be null");
 			}
 			
-			try {
-				if (!launcherClassLoader.contains(mainJar)) {
-					launcherClassLoader.loadJar(mainJar);
+			if (mainJar != null) {
+				try {
+					if (!launcherClassLoader.contains(mainJar)) {
+						launcherClassLoader.loadJar(mainJar);
+					}
+					mainClassName = JarUtils.getMainClassName(mainJar);
+				} catch (IOException e) {
+					fatal(e);
 				}
-				mainClassName = JarUtils.getMainClassName(mainJar);
-			} catch (IOException e) {
-				fatal(e);
-			}
-			
-			if (mainClassName == null) {
-				fatal(mainJar + " file does not contains a 'Main-Class' manifest attribute");
+				
+				if (mainClassName == null) {
+					fatal(mainJar + " file does not contains a 'Main-Class' manifest attribute");
+				}
 			}
 		}
 		System.out.println("mainClassName = '" + mainClassName + "'");
