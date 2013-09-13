@@ -99,6 +99,8 @@ public class ExtendedProperties extends Properties {
                 start += paramValue.length();
             } else {
                 start = end + 1;
+                // TODO throws an exception ?
+                System.out.println("Cannot found parameter '" + paramName + "'");
             }
             start = result.indexOf("${", start);
             end = result.indexOf("}", start + 2);
