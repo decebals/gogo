@@ -7,7 +7,8 @@ Current build status: [![Build Status](https://buildhive.cloudbees.com/job/deceb
 Features/Benefits
 -------------------
 Gogo is an open source (Apache license) tiny (around 12KB) java application launcher, with zero dependencies and a quick learning curve.   
-With gogo you can add resources (jars and classes) to your application classpath in a dynamically mode, specifying the main class add VM options and run your application with a simple double-click.
+With Gogo you can add resources (jars and classes) to your application classpath in a dynamically mode, specifying the main class, add VM options and run your application with a simple double-click.   
+All you must to do is to set some properties in the gogo.properties file.  
 
 Using Maven
 -------------------
