@@ -34,20 +34,30 @@ It's very simple to use gogo with your application:
 - create a gogo.properties file ([few properties](https://github.com/decebals/gogo/blob/master/src/main/resources/gogo.properties))
 - run application with `java -jar gogo.jar`
 
+Gogo supports a hierarchy of properties file. In decreasing precedence they are:
+
+- java system properties (ex: `java -Dapp.class.path=lib/*;jdbc-drivers gogo.jar`)
+- gogo.properties from current directory
+- gogo.properties from gogo.jar
+
+You can specify at runtime the location of the gogo properties file using gogo.properties property (ex: `java -Dgogo.properties=/home/decebal/.gogo/gogo.properties`). 
+
 In gogo.properties are defined by default two sections (kinds) of parameters: app and vm.   
 The app parameters are parameters prefixed with `app.` and they are used by gogo as informations for launch your application.    
 The vm parameters are parameters prefixed with `vm.` and are passed as system properties in your application.  
 
 Example
 
+__$ ls__
 ````shell
-$ ls
 gogo.jar  
 gogo.properties  
 jdbc-drivers  
 lib
+````
 
-$ cat gogo.properties 
+__$ cat gogo.properties__ 
+````shell
 # specify additional class path resources. Optional
 app.class.path=lib/*;jdbc-drivers
 # specify the main class of the application to run. Required
@@ -57,8 +67,11 @@ app.main.jar=
 
 vm.http.proxyHost=192.168.16.1
 vm.http.proxyPort=128
+````
 
-$ java -jar gogo-0.1.jar 
+
+__$ java -jar gogo-0.1.jar__ 
+````shell
 propertiesFile = gogo.properties
 -- listing properties --
 app.main.class=ro.fortsoft.gogo.demo.Main
