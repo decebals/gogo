@@ -36,7 +36,7 @@ It's very simple to use gogo with your application:
 
 In gogo.properties are defined by default two sections (kinds) of parameters: app and vm.   
 The app parameters are parameters prefixed with `app.` and they are used by gogo as informations for launch your application.    
-The `vm.` parameters are parameters prefixed with `vm.` and are passed as system properties in your application.  
+The vm parameters are parameters prefixed with `vm.` and are passed as system properties in your application.  
 
 Example
 
