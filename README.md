@@ -34,6 +34,10 @@ It's very simple to use gogo with your application:
 - create a gogo.properties file ([few properties](https://github.com/decebals/gogo/blob/master/src/main/resources/gogo.properties))
 - run application with `java -jar gogo.jar`
 
+In gogo.properties are defined by default two sections (kinds) of parameters: app and vm.   
+The app parameters are parameters prefixed with `app.` and they are used by gogo as informations for launch your application.    
+The `vm.` parameters are parameters prefixed with `vm.` and are passed as system properties in your application.  
+
 Example
 
 ````shell
@@ -50,6 +54,9 @@ app.class.path=lib/*;jdbc-drivers
 app.main.class=ro.fortsoft.gogo.demo.Main
 # specify main jar. Optional
 app.main.jar=
+
+vm.http.proxyHost=192.168.16.1
+vm.http.proxyPort=128
 
 $ java -jar gogo-0.1.jar 
 propertiesFile = gogo.properties
@@ -82,6 +89,18 @@ The lib folders contains jar files used by my application. The jdbc-drivers cont
 In gogo.properties file I specify the application classpath (lib/*;jdbc-drivers) and the application class that contains the main method.  
 The the classpath entries of your application are separated by ';' character. If the classpath entry ended with /* means that you want to load all jars (recursively) from that directory else that directory is a classes directory.  
 With `java -jar gogo.jar` you launch your application. You can see that your main method is called (displaying - Hello from "Demo") after some info messages.
+
+Also, you can use variables in gogo.properties.  
+For example:
+
+```
+myapp.version= 1.0
+app.main.jar=${myapp.version}
+vm.myapp.logs=${user.home}/.myapp/logs
+```
+
+In above example I declared a variable `myapp.version` and I used this variable to define app.main.jar. Also I declared myapp.logs as vm parameters (accessible in my applicaton as a system property).   
+In gogo.properties you can create new variables and you can use any java system properties (user.home in above example).   
 
 License
 --------------
